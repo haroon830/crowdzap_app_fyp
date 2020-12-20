@@ -2,7 +2,7 @@ import { setAddresses, fetchAddressesFailed, addNewAddress } from "../../reducer
 import {WalletService} from "./WalletService"
 
 let walletService = new WalletService()
-
+//@ts-ignore
 export const storeNewAddress = (newAddress: any)=> (dispatch:any)=>{
     let address = {
         keyTag : newAddress.keyTag,
@@ -42,5 +42,21 @@ export const getAddresses = () => dispatch => {
     .catch(err =>{
         console.log(err)
         dispatch(fetchAddressesFailed())
+    });
+};
+
+// @ts-ignore
+export const placeCryptoOrder = (order) => dispatch => {
+    walletService.placeCryptoOrder(order).then(res => {
+        console.log(res)
+        if (res.status === 200) {
+            alert("Successfully placed your order")
+        } else {
+            alert(res.data.status)
+        }
+    })
+    .catch(err =>{
+        console.log(err)
+        alert("Failed to place your order")
     });
 };

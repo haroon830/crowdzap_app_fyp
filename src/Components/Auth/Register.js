@@ -78,7 +78,7 @@ export class Register extends React.Component {
 
     }
     return (
-      <Grid container spacing={1} direction={"row"}>
+      <Grid container spacing={1} direction={"row"} style={{backgroundColor: "white"}}>
       <Grid item xs={12} sm={5} md={6}>
         <img src={image} className="bg_image"/>
       </Grid>
@@ -135,7 +135,7 @@ export class Register extends React.Component {
                     />
                   <span className="terms">
                     <Checkbox required/>
-                    <p>I accept <a>terms & conditions</a></p>
+                    <p style={{paddingTop: '10px'}}>I accept <a>terms & conditions</a></p>
                   </span>
                   <div className="submit">
                     <Button className="submit_btn" onClick={this.onSubmit}>Let's GO</Button>

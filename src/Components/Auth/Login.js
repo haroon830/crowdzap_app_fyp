@@ -81,7 +81,7 @@ export class Login extends React.Component {
       setTimeout(() => { this.props.history.push("/Register"); }, 500);
     }
     return (
-        <Grid container spacing={1} direction={"row"}>
+        <Grid container spacing={1} direction={"row"} style={{backgroundColor: "white"}}>
           <Grid item xs={12} sm={5} md={6}>
             <img src={image} className="bg_image"/>
           </Grid>

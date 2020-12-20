@@ -13,6 +13,9 @@ const CONSTANTS = {
         LOGIN : "/api/user/login",
         POST_KYC: '/api/user/kyc',
         GET_LISTED_PROPS: 'api/property/get_listed_props',
+        GET_ADDRESSES : 'api/user/get_keys',
+        ADD_NEW_ADDRESSES : 'api/user/add_key',
+        PLACE_CRYPTO_ORDER :'api/crypto/order_crypto',
         ADMIN:{
             GET_CRYPTO_ORDERS : "./api/crypto/get_crypto_orders",
             PROCESS_CRYPTO_ORDERS : "./api/crypto/process_crypto_orders"
@@ -36,7 +39,12 @@ const CONSTANTS = {
     },
     SETTING :{
         KYC_STATUS : "CHANGE_KYC_STATUS",
-    },    
+    },
+    WALLET :{
+        SET_KEYS : 'SET_CRYPTO_ADDRESSES',
+        FAILED_TO_GET : "FAILED_TO_GET",
+        ADD_NEW_KEY : 'ADD_NEW_KEY'
+    },
     ADMIN : {
         CRYPTO_ORDERS:{
             FETCH : "CHANGE_FETCH_STATUS",
