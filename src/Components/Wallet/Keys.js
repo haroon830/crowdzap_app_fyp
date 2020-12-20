@@ -10,8 +10,48 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
+import {storeNewAddress, getAddresses} from '../../services/Wallet'
+import {generateKeyPair} from '../../services_chain'
+import {connect} from "react-redux"
+
+import KeyTagDailog from './Components/KeyTagDailog'
 class Keys extends Component{
-    render(){
+    constructor(props){
+        super(props)
+        this.state = {
+            dailogStatus : false,
+            address:"Processing",
+            publicKey:"",
+            privateKey: ""
+        }
+        this.changeDailogStatus = this.changeDailogStatus.bind(this)
+        this.clsoeDailog = this.clsoeDailog.bind(this)
+    }
+    componentDidMount(){
+        if(!this.props.tried){
+            this.props.getAddresses()
+        }        
+    }
+
+    changeDailogStatus(){
+        let keyPair = this.props.generateKeyPair()
+        this.setState({
+            dailogStatus : true,
+            address : keyPair.address,
+            publicKey: keyPair.publicKey,
+            privateKey: keyPair.privateKey
+        })                       
+    }
+
+    clsoeDailog(){
+        this.setState({
+            dailogStatus : false
+        })
+    }
+
+    
+    render(){      
+        console.log(this.props.tried && this.props.keys.length === 0)  
         return(
             <div 
             role="tabpanel"
@@ -28,16 +68,19 @@ class Keys extends Component{
                     </Grid>
                     <Grid item xs={6} sm={4} md={2}> 
                     <div className="submit">
-                        <Button className="submit_btn" onClick={this.handleSubmit}>Create New Key</Button>
+                        <Button className="submit_btn" onClick={this.changeDailogStatus}>Create New Key</Button>
                     </div>
                     </Grid>
                     <Grid item xs={6} sm={4} md={2}> 
                     <div className="submit">
-                        <Button className="submit_btn" onClick={this.handleSubmit}>Import Private Keys</Button>
+                        <Button className="submit_btn">Import Private Keys</Button>
                     </div>
                     </Grid>
-                </Grid>                    
-                <CustomPaper elevation={8}>
+                </Grid>
+                {
+                    (this.props.tried && this.props.keys.length === 0)?
+                    <>
+                    <CustomPaper elevation={8}>
                     <Accordion className="accord">
                     <AccordionSummary
                     expandIcon={<ExpandMoreIcon style={{color:"white"}}/>}
@@ -46,8 +89,8 @@ class Keys extends Component{
                     id="panel1c-header"
                     >
                     <div>
-                    <Typography variant="body1" color="secondary">Tag: Account 1</Typography>
-                        <Typography variant="body1" color="secondary"> Selected Account: cosmose35dxhi324b23h98noi89swobadasdsdn</Typography>
+                    <Typography variant="body1" color="secondary">Tag: No New Created Yet</Typography>
+                        <Typography variant="body1" color="secondary"> Selected Account: ----------------------------------------------------</Typography>
                     </div>
                     </AccordionSummary>
                     <AccordionDetails >
@@ -58,7 +101,7 @@ class Keys extends Component{
                         </Typography>
                         <br />
                         <Typography variant="body2">
-                            asfakfjkaskgtglk5j6iour9332r9ru923rd2d32wqferry5n1
+                        ----------------------------------------------------
                         </Typography>
                         <br />
                         <br />
@@ -67,23 +110,27 @@ class Keys extends Component{
                         </Typography>
                         <br />
                         <Typography variant="body2">
-                            asfakfjkaskgtglk5asadj6iour9332r9ru923rd2de3jn9urry5ce
+                            ----------------------------------------------------
                         </Typography>
                     </div>
                     </AccordionDetails>
                     <Divider />
                         <AccordionActions>
                             <div className="accordButtonDiv">
-                                <Button size="small" className="btn">
+                                <Button size="small" disabled className="btn">
                                 Import Private Key
                                 </Button>
                             </div>                    
                         </AccordionActions>
-                </Accordion>
-                </CustomPaper>
-                <br/>
-                <CustomPaper elevation={8}>
-                    <Accordion className="accord">
+                    </Accordion>
+                    </CustomPaper>
+                    <br/>
+                    </>
+                    :
+                    this.props.keys.map((key, index )=>(
+                        <>
+                        <CustomPaper elevation={8}>
+                        <Accordion className="accord">
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon style={{color:"white"}}/>}
                         aria-controls="panel1c-content"
@@ -91,8 +138,8 @@ class Keys extends Component{
                         id="panel1c-header"
                         >
                         <div>
-                        <Typography variant="body1">Tag: Account 2</Typography>
-                            <Typography variant="body1"> Selected Account: cosmose35dxhi324b23h98noi89swobadasdsdn</Typography>
+                            <Typography variant="body1" {...(index === 0)?'color:secondary':''}>Tag: {key.keyTag}</Typography>
+                            <Typography variant="body1" {...(index === 0)?'color="secondary"':''}> Selected Account: {key.address}</Typography>
                         </div>
                         </AccordionSummary>
                         <AccordionDetails >
@@ -117,15 +164,26 @@ class Keys extends Component{
                         </div>
                         </AccordionDetails>
                         <Divider />
-                        <AccordionActions>
-                            <div className="accordButtonDiv">
-                                <Button size="small" className="btn">
-                                SET AS DEFAULT ACCOUNT
-                                </Button>
-                            </div>                    
-                        </AccordionActions>
-                    </Accordion>
-                </CustomPaper>
+                            <AccordionActions>
+                                <div className="accordButtonDiv">
+                                    <Button size="small" className="btn">
+                                    Import Private Key
+                                    </Button>
+                                </div>                    
+                            </AccordionActions>
+                        </Accordion>
+                        </CustomPaper>
+                        <br/>
+                        </>
+                    ))    
+                }
+                <KeyTagDailog 
+                    status={this.state.dailogStatus}
+                    closeDailog= {this.clsoeDailog}
+                    address= {this.state.address}
+                    publicKey= {this.state.publicKey}
+                    privateKey= {this.state.privateKey}
+                    />
             </div>
         )
     }
@@ -133,8 +191,10 @@ class Keys extends Component{
 
 const mapStateToProps = state => ({
     auth: state.setting.kycPassed,
+    keys: state.wallet.addresses,
+    tried: state.wallet.tried
 });
 export default connect(
     mapStateToProps,
-    { processKyc}
+    { storeNewAddress, getAddresses, generateKeyPair}
 )(Keys)

@@ -9,14 +9,14 @@ const initialState = {
 /*************/
 export const setAddresses = (payload) => {
   return {
-      type: CONSTANTS.LISTED_PROPS.SET_LISTED_PROPS,
+      type: CONSTANTS.WALLET.SET_KEYS,
       payload: payload
   };
 };
 
 export const fetchAddressesFailed = () => {
     return {
-        type: CONSTANTS.LISTED_PROPS.FAILED_TO_GET,
+        type: CONSTANTS.WALLET.FAILED_TO_GET,
         payload: null
     };
 };
@@ -40,11 +40,13 @@ export default function(state = initialState, action) {
     };
     case CONSTANTS.WALLET.FAILED_TO_GET:
       return {
+        ...state,
         tried : true,
       };
     case CONSTANTS.WALLET.ADD_NEW_KEY:
     return {
-        addresses : state.addresses.concat(action.payload)
+        ...state,
+        addresses : state.addresses.concat(action.payload.addresses)
     };
     default:
       return state;

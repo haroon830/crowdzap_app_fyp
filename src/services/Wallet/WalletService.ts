@@ -2,14 +2,19 @@ import { HTTP } from "../../config/HTTPService";
 
 import CONSTANTS from "../../config/constants";
 
-const GET_LISTED_PROPS = CONSTANTS.API_URL.GET_LISTED_PROPS
+const GET_ADDRESSES = CONSTANTS.API_URL.GET_ADDRESSES
+const ADD_NEW_ADDRESSES = CONSTANTS.API_URL.ADD_NEW_ADDRESSES
 
-interface Query{
-    nodeName: string;
-}
+export class WalletService {
+    public getAddresses() { 
+        return HTTP.get(GET_ADDRESSES)
+    }
 
-export class ListedPropService {
-    public getListedProps(query: Query) { 
-        return HTTP.get(GET_LISTED_PROPS, {params: query})
+    public addNewAddress(address: any) {
+        return HTTP.post(ADD_NEW_ADDRESSES, address,{
+            headers: {
+                'Content-Type': "application/json"
+            }
+        })
     }
 }
