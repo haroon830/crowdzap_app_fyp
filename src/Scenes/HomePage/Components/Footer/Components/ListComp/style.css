@@ -1,0 +1,26 @@
+.listComp .listCompTitle{
+    font-size: 16px;
+    line-height: 16px;
+    padding-bottom: 20px;
+    color: #c6e4e3;
+}
+
+.listComp .listMain{
+    margin: 0;
+    padding: 0 0 20px 0;
+    list-style-type: none;
+    padding-bottom: 20px;
+}
+
+.listComp .listMain li{
+    line-height: 13px;
+    padding-bottom: 7px;
+}
+
+.listComp .listMain li a {
+    color: #fff;
+}
+
+.listComp .listMain li a:hover {
+  color: #999;
+}

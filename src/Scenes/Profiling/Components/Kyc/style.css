@@ -1,0 +1,60 @@
+.kycMain {
+    padding-top: 2%;
+}
+
+.subHeading{
+    color: #afafaf;
+}
+
+.docTypes{
+    padding-left: 10%;
+}
+.docTypeBtn{
+    border-radius: 5px;
+    border: 0;
+    background: #959d9e;
+    color: #fbfbfb;
+    height: 50px;
+}
+.numFields{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.uploadDoc {
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+.uploadDocBtn{
+    border: 1px solid #4f535a;
+    padding: 5%;
+    background-color: #959d9e;
+}
+.inputDoc{
+    display: none;
+}
+.buttonDoc{
+    align-content: center;
+    display: flex;
+    margin-left: 40%;
+}
+.submit {
+    padding: 13%;
+    float: right;
+}
+.submit_btn{
+    width: 100%;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #0EAAA6 30%, #529191 90%);
+    border: 0;
+    color: white;
+    height: 48px;
+    padding: 0 30px;
+    box-shadow:0 3px 5px 2px rgb(174, 194, 212);
+}
+
+.hrDivder{
+    border: 1px solid;
+    border-color: #434242;
+    max-width: 80%;
+}

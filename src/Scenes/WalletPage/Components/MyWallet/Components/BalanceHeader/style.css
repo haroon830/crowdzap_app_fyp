@@ -1,0 +1,94 @@
+.balanceHeader {
+  width: 100%;
+  min-height: 270px;
+  max-height: 280px;
+  background-color: #0eaaa6;
+  color: white;
+  position: relative;
+}
+
+.bnContainer {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.balanceNumber {
+  font-size: 40px;
+  font-weight: 700;
+  height: 100%;
+}
+
+.balanceType {
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+.refresh {
+  position: relative;
+  top: 10px;
+  right: 2%;
+  float: right;
+}
+
+.load{
+  margin:auto;
+  width: 50%;
+}
+
+.balanceType li, .refresh li {
+  cursor: pointer;
+  color: #ddd;
+  display: inline-block;
+  padding: 5px;
+  margin: 0 3px;
+  border: 1px solid #999;
+}
+
+.balanceType li.active,.refresh li.active, .balanceType li:hover {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.balanceActions {
+  margin: 0 auto;
+  width: 318px;
+  position: relative;
+}
+
+.balanceHeader ul.actions {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+  border: 1px solid #e8e8e8;
+  position: absolute;
+  width: 100%;
+  color: white;
+}
+
+.balanceHeader ul.actions li {
+  padding: 15px 0;
+  float: left;
+  width: 33.33%;
+  text-align: center;
+  border-right: 1px solid #e8e8e8;
+}
+
+.balanceHeader ul.actions li a {
+  padding: 15px 0;
+}
+
+.balanceHeader ul.actions li:last-child {
+  border-right: 0 none;
+}
+
+.actions span {
+  color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .bnContainer {
+    padding-top: 40px;
+  }
+}

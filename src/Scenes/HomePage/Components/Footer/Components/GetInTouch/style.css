@@ -1,0 +1,71 @@
+.getInTouch .touchTitle{
+    font-size: 16px;
+    line-height: 16px;
+    padding-bottom: 20px;
+    color: #c6e4e3;
+}
+
+.getInTouch .mainList {
+  margin: 0;
+  padding: 0 0 20px 0;
+  list-style-type: none;
+  padding-bottom: 20px;
+}
+
+.getInTouch li a {
+  color: #fff;
+}
+
+.getInTouch li {
+  line-height: 13px;
+  padding-bottom: 7px;
+}
+
+.getInTouch li.footer-phone {
+  font-size: 20px;
+  line-height: 20px;
+  padding-bottom: 15px;
+}
+
+
+.getInTouch li.footer-address {
+  padding-bottom: 15px;
+}
+
+.getInTouch li.footer-address p {
+  line-height: 13px;
+  margin: 0 0 5px;
+}
+
+.getInTouch li a:hover {
+  color: #999;
+}
+
+/* =================================== */
+.btn-icon {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  /* width: 36px; */
+  text-align: center;
+}
+
+.btn-o.btn-white {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+
+
+.btn-icon.btn-sm {
+  width: 31px;
+}
+
+.btn-icon.btn-round {
+  border-radius: 50%;
+}
+
+.btn-o.btn-white:hover{
+  background-color: #fff;
+  color: #333;
+}
