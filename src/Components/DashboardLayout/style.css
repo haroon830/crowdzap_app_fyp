@@ -1,0 +1,41 @@
+.dashboard {
+  overflow: hidden;
+}
+
+.dashboard .headerWrapper {
+  height: 60px;
+}
+
+.dashboard .dashboardTitle {
+  overflow: hidden;
+  background: #0EAAA6;
+  color: white;
+  border-top: 5px solid #0D908D;
+  text-align: center;
+  padding: 5px;  
+}
+
+.dashboard .bodyWrapper {
+  height: calc(100vh - 60px);
+  position: relative;
+}
+
+.dashboard .contentWrapper {
+  margin-left: 70px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .dashboard .headerWrapper {
+    height: 50px;
+  }
+  .dashboard .bodyWrapper {
+    height: calc(100vh - 50px);
+  }
+  .dashboard .contentWrapper {
+    margin-left: 0px;
+  }
+}

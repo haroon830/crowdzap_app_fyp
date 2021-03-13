@@ -1,0 +1,39 @@
+.selectComponent {
+  position: relative;
+  display: flex;
+  user-select: none;
+}
+
+.selectComponent.active .dropdown-toggle {
+  color: #333;
+}
+
+.selectComponent.active ul.dropdown-select {
+  display: block;
+}
+
+.selectComponent .dropdown-toggle {
+  cursor: pointer;
+  width: 100%;
+  color: #999;
+}
+
+.selectComponent .caret {
+  position: absolute;
+  right: 5px;
+  top: 17px;
+}
+
+.selectComponent .dropdown-menu {
+  min-width: 100%;
+}
+
+.dropdown-select > li > a:hover {
+  background-color: #f3f3f3;
+  cursor: pointer;
+}
+
+.dropdown-select.switchTop {
+  bottom: calc(100% + 5px);
+  top: inherit;
+}

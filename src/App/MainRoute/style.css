@@ -1,0 +1,156 @@
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  min-width: 320px;
+  background: #fff;
+  overflow-y: auto;
+  font-family: 'open_sansregular,sans-serif'
+}
+
+html, body {
+  height: 100%;
+  font-size: 13px;
+  font-family: 'open_sansregular,sans-serif'
+}
+
+.btn {
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.btn-round {
+  border-radius: 50px;
+}
+
+.btn-o {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.btn-black {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn-o.btn-black {
+  background-color: transparent;
+  color: #333;
+  border-color: #333;
+}
+
+.btn-black:hover, .btn-black:focus, .btn-black:active, .btn-black.active, .open > .dropdown-toggle.btn-black {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-o.btn-black:hover, .btn-o.btn-black:focus, .btn-o.btn-black:active, .btn-o.btn-black.active, .open > .dropdown-toggle.btn-o.btn-black {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-green {
+  background-color: #0eaaa6;
+  color: #fff;
+}
+
+.btn-o.btn-green {
+  background-color: transparent;
+  color: #0eaaa6;
+  border-color: #0eaaa6;
+}
+
+.btn-green:hover, .btn-green:focus, .btn-green:active, .btn-green.active, .open > .dropdown-toggle.btn-green {
+  background-color: #068b85;
+  color: #fff;
+}
+
+.btn-o.btn-green:hover, .btn-o.btn-green:focus, .btn-o.btn-green:active, .btn-o.btn-green.active, .open > .dropdown-toggle.btn-o.btn-green {
+  background-color: #0eaaa6;
+  color: #fff;
+}
+
+.text-green {
+  color: #0eaaa6;
+}
+
+a.text-green:hover {
+  color: #068b85;
+}
+
+.help-block {
+  font-size: 11px;
+  font-style: italic;
+}
+
+.align-right {
+  text-align: right !important;
+}
+
+.slimScroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 100px;
+}
+
+.slimScroll::-webkit-scrollbar:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+.slimScroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 100px;
+}
+
+.slimScroll::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.61);
+  border-radius: 100px;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* Loader */
+
+.loader {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+}
+
+.loader:before {
+  content: '';
+  display: block;
+  border: 5px solid #e6e5e5;
+  border-top: 5px solid #00A9A4;
+  border-bottom: 5px solid #00A9A4;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* End loader */
