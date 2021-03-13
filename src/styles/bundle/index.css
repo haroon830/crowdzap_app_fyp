@@ -1,9 +1,0 @@
-@import './css/main.css';
-@import "./css/auth.css";
-@import "./css/settings.css";
-@import "./css/dashboard.css";
-@import "./css/listedItemDetail.css";
-@import "./css/admindashboard.css";
-@import './css/wallet.css';
-
-@import "~react-image-gallery/styles/css/image-gallery.css";
