@@ -15,7 +15,7 @@ export const processCryptoOrder = (recipientAddress, amount, orderId, callback) 
 }
 
 export const sendRelCoin = (recipientAddress, amount, callback) =>{
-    sendRelFromChain().then((res)=>{
+    sendRelFromChain(recipientAddress, amount).then((res)=>{
         if(res.transactionHash){
             callback("PROCESSING_SUCCEED", res.transactionHash)
         }else{
