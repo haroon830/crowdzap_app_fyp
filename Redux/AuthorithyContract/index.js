@@ -5,6 +5,7 @@ const initialState = {
     loadingPollsError: null,
     //////////////////////////
     processingCreatePoll: false,
+    msg:"",
     createPollError : null,
     /////////////////////////
     processingVotePoll: false,
@@ -66,10 +67,10 @@ export const processingCreatePoll = () => {
     };
 };
 
-export const createPollSucceed = () => {
+export const createPollSucceed = (msg) => {
     return {
         type: ACTION_TYPE.CRETE_POLL_SUCCEED,
-        payload: null
+        payload: msg
     };
 };
 
@@ -168,18 +169,21 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 //////////////////////////
+                msg:"",
                 processingCreatePoll: true,
                 createPollError : null,
             };
         case ACTION_TYPE.CRETE_POLL_SUCCEED:
             return {
                 ...state,
+                msg:action.payload,
                 processingCreatePoll: false,
                 createPollError : null,
             };
         case ACTION_TYPE.CREATE_POLL_ERROR:
             return {
                 ...state,
+                msg:"",
                 processingCreatePoll: false,
                 createPollError : action.payload,
             };
@@ -218,6 +222,7 @@ export default function(state = initialState, action) {
         case ACTION_TYPE.POLL_PROCESS_ERROR:
             return {
                 ...state,
+                msg:action.payload,
                 processingVotePoll: false,
                 votingPollError : action.payload,
             };

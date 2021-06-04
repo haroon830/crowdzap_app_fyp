@@ -9,10 +9,10 @@ const initialState = {
 /***************/
 /***Actions****/
 /*************/
-export const loadingListedProps = () => {
+export const loadingListedProps = (payload) => {
     return {
         type: CONSTANTS.LISTED_PROPS.LOADING_PROPS,
-        payload: null
+        payload: payload
     };
 };
 
@@ -37,10 +37,8 @@ export default function(state = initialState, action) {
   switch (action.type) {
      case CONSTANTS.LISTED_PROPS.LOADING_PROPS:
          return {
-             loading: true,
-             listedProperties  : null,
-             tried : false,
-             filterBy: null
+             ...state,
+             loading: action.payload,
          };
      case CONSTANTS.LISTED_PROPS.SET_LISTED_PROPS:
           return {

@@ -4,6 +4,7 @@ const initialState = {
     cryptoOrders : [],
     loadingOrders : false,
     tried: false,
+    addedOrderStatus: false,
     processingOrder: false,
     error : null,
     processingError : null
@@ -89,6 +90,7 @@ export default function(state = initialState, action) {
                 loadingOrders : false,
                 processingOrder: true,
                 error: null,
+                addedOrderStatus: false,
                 processingError: null,
             };
         case CONSTANTS.CRYPTO_ORDERS.ADD_CRYPTO_ORDER:
@@ -98,6 +100,7 @@ export default function(state = initialState, action) {
                 processingOrder: false,
                 error: null,
                 processingError: null,
+                addedOrderStatus: true,
                 cryptoOrders: state.cryptoOrders.concat(action.payload)
             };
         case CONSTANTS.COMMON.GET_ERRORS:
@@ -107,6 +110,7 @@ export default function(state = initialState, action) {
                 processingOrder: false,
                 error: action.payload,
                 processingError: null,
+                addedOrderStatus: false,
                 tried: true,
             };
         case CONSTANTS.CRYPTO_ORDERS.ORDER_ERROR:
@@ -115,6 +119,7 @@ export default function(state = initialState, action) {
                 loadingOrders : false,
                 processingOrder: false,
                 error: null,
+                addedOrderStatus: false,
                 processingError: action.payload,
                 tried: false,
             };
@@ -124,6 +129,7 @@ export default function(state = initialState, action) {
                 loadingOrders : false,
                 processingOrder: false,
                 error: null,
+                addedOrderStatus: false,
                 processingError: null,
                 tried: false,
             };
