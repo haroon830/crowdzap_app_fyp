@@ -1,7 +1,9 @@
 import * as React from 'react';
 import './style.css';
 import HouseDetailModel from "../SelectComponent/Detail";
+import AdminHouseDetail from "Components/SelectComponent/AdminDetail"
 import {useState} from "react";
+import AdminSelectedItemDetailDialog from 'Components/SelectComponent/AdminDetail';
 
 
 function SingleHouse (props){
@@ -31,7 +33,12 @@ function SingleHouse (props){
             <li><span className="icon-frame" /> {new Date(props.data.endDate).toDateString()} Sq Ft</li>
           </ul>
         </a>
-        <HouseDetailModel status={modalStatus} changeStatus={setModalStatus} data={props.data}/>
+        {
+          props.adminPage ? 
+            <AdminSelectedItemDetailDialog status={modalStatus} changeStatus={setModalStatus} data={props.data}/>
+            :
+            <HouseDetailModel status={modalStatus} changeStatus={setModalStatus} data={props.data}/> 
+        }               
       </div>
     )
 }

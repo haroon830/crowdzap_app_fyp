@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './style.css';
 
+
 class SelectComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +9,6 @@ class SelectComponent extends React.Component {
       showList: false,
       itemSelected: 0
     };
-    this.wrapperRef = null
   }
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside);

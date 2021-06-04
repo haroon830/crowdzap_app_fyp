@@ -6,7 +6,6 @@ import {faCoins} from "@fortawesome/free-solid-svg-icons";
 import {Paper} from "@material-ui/core";
 import Divider from '@material-ui/core/Divider';
 
-
 class Description extends Component{
     render(){
         return(

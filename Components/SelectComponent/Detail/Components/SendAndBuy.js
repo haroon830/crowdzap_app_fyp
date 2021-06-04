@@ -16,7 +16,8 @@ function Invest (props){
         e.preventDefault()
         let data = {
             amount : amount,
-            contractAddress : ""
+            contractAddress : props.data.contractAddress,
+            contractType: props.data.contractType
         }
         //TODO:: call method according to type of contract
         setProcessingState("PROCESSING")
@@ -88,7 +89,7 @@ function Invest (props){
                             className="btn btn-green"
                             onClick={buyTokens}
                             disabled={
-                                !!(locked || user.role === "admin")
+                                (locked)
                             }
                         >
                             Invest
@@ -101,3 +102,4 @@ function Invest (props){
 }
 
 export default Invest
+//!!(locked || user.role === "admin")

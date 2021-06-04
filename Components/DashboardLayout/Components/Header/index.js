@@ -27,7 +27,6 @@ class Header extends React.Component{
           </Link>
         </div>
         <a href="#" className="navHandler" onClick={(e) => this.props.clickToggle()}><Icon  name="bars" /></a>
-        <SearchForm />
         <div className="userMenuWrapper">
           <UserMenu />
         </div>

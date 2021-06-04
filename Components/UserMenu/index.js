@@ -5,6 +5,8 @@ import { Icon } from 'react-fa';
 import LocalStore from "../../Config/localStore";
 import {connect} from "react-redux";
 import {processKyc} from "../../Services/Setting";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAddressBook} from '@fortawesome/free-solid-svg-icons'
 
 class UserMenu extends React.Component {
   constructor(props) {
@@ -75,6 +77,7 @@ class UserMenu extends React.Component {
             <li><Link to="/wallet"><span className="walletIcon fa" />Wallet</Link></li>
             <li><Link to="/profiling/kyc"><Icon name="cog" />Kyc</Link></li>
             <li><Link to="/profiling"><Icon name="user" />Profile</Link></li>
+            <li><Link to="/profiling/contacts"><FontAwesomeIcon icon={faAddressBook} size={"1x"}  />  Contacts</Link></li>
             <li><a href="#">
               <Icon name="bell-o" />
               Notifications

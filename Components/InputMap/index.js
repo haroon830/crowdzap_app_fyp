@@ -13,9 +13,9 @@ class InputMap extends React.Component{
     super(props);
     this.state = {
       isShow: false,
-      center: {lat: 10.766748, lng: 106.705785},
+      center: {lat: 32.571144, lng: 74.075005},
       marker: {
-        position: {lat: 10.766748, lng: 106.705785}
+        position: {lat: 32.571144, lng: 74.075005}
       },
       zoom: 14,
       draggable: true,

@@ -63,11 +63,12 @@ a.navHandler {
 
 .search {
   float: left;
+  border-bottom: 1px solid teal;
 }
 
 .searchIcon {
   font-size: 13px;
-  float: left;
+  float: right;
   color: #999;
   margin-left: 23px;
   display: block;
@@ -76,7 +77,7 @@ a.navHandler {
 }
 
 .searchIcon.active {
-  color: #3a3a3a;
+  color: #0D908D;
 }
 
 .icon-magnifier {
@@ -96,7 +97,7 @@ a.navHandler {
   border: 0 none;
   font-size: 13px;
   margin: 19px 0 0 5px;
-  width: 210px;
+  width: 400px;
   -webkit-appearance: none;
 }
 
