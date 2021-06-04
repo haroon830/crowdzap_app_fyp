@@ -73,4 +73,29 @@ function userKeys(data, dispatch){
   }
 }
 
-;
+
+export const getUserContacts = ( callBack) => {
+  auth.getUserContacts().then(res => {
+      if (res.status === 200 && res.data) {
+          callBack("", res.data.data)
+      }else{
+          callBack("Failed to get contacts")
+      }
+  }).catch(err => {
+      console.log(err)
+      callBack("Failed to get contacts")
+  });
+};
+
+export const addNewUserContacts = (data, callBack) => {
+  auth.addUserContact(data).then(res => {
+      if (res.status === 200 && res.data.status== "ok") {
+          callBack("")
+      }else{
+          callBack("Failed to add contact")
+      }
+  }).catch(err => {
+      console.log(err)
+      callBack("Failed to add contact")
+  });
+};
