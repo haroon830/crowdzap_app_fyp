@@ -99,11 +99,13 @@ function HDWallet (){
     }
 
     const importWallet  = async () =>{
-        if(importedMnemonics.length === 71 && password.length > 8){
+  
+        if( password.length > 8){
             const wallet = await Secp256k1HdWallet.fromMnemonic(
                 // your mnemonic here 👇
                 importedMnemonics
             );
+           
             let serialize = await wallet.serialize(password)
             store.setSerializedWallet(serialize)
             setSerializedData(serialize)
@@ -119,7 +121,7 @@ function HDWallet (){
                         (!serializedData)?
                             [
                                 <Alert show={true} class="info" message="Failed to find serialized wallet data" />,
-                                <Alert show={(importedMnemonicsError)?true: false} class="error" message={importedMnemonics} />,
+                                <Alert show={(importedMnemonicsError)?true: false} class="danger" message={"Failed to create wallet from seed"} />,
                                 <div className="row form-group" >
                                     <div className="col-xs-12 col-sm-8 col-md-8">
                                         <h4>Enter Mnemonics</h4>
@@ -164,9 +166,7 @@ function HDWallet (){
                         :
                         <NewWallet/>
                     :
-                    <Loader
-                        type="Grid" color="#00A9A4" height={60} width={60} visible={loading}
-                    />
+                    <Loader type="Grid" color="#00A9A4" height={60} width={60} visible={loading}/>
             }
         </div>
     )

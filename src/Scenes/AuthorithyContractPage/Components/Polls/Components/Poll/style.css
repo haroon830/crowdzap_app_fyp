@@ -8,6 +8,7 @@
   border-radius: 3px;
   position: relative;
   transition: all .2s linear 0s;
+  padding-left: 2%;
 }
 
 .agentInfoContainer:hover{
@@ -17,22 +18,6 @@
 
 .agentInfoContainer:hover .info .name{
   color: #0eaaa6;
-}
-
-.agentInfoContainer .avatar {
-  width: auto;
-  height: auto;
-  border-radius: 0;
-  padding: 10px;
-  float: left;
-}
-
-.agentInfoContainer .avatar > img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  vertical-align: middle;
-  border: 0;
 }
 
 .agentInfoContainer .info {
@@ -55,6 +40,7 @@
 .agentInfoContainer .info .address {
   font-size: 11px;
   line-height: 11px;
+  margin-bottom: 5px;
   color: #999;
   font-style: italic;
 }

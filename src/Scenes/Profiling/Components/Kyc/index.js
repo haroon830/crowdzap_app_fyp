@@ -65,6 +65,7 @@ class KYC extends Component{
             let data = {
                 ...this.state
             }
+            data['name'] = this.props.user.name
             this.props.processKyc(data)
         }
     }

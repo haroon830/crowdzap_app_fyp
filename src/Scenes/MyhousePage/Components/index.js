@@ -8,48 +8,11 @@ import {useSelector} from "react-redux";
 import Loader from "react-loader-spinner";
 import Alert from "Components/Common/Alert";
 
-function PollInfo(props){
-    const locked = useSelector((state)=> state.wallet.walletLocked)
+function ListedPropInfo(props){
     const [processing, setProcessing] = useState(false)
     const [responseHash, setResponseHash] = useState("")
     const [resErrorMsg, setResErrorMsg] = useState("")
 
-    const getVotesAddress = (votes)=>{
-        var addresses ="\n"
-        if(votes){
-            votes.forEach(element => {
-                addresses = addresses+element+"\n"
-            });
-        }
-        
-        return addresses
-    }
-
-    const totalCastedVotes = ()=>{
-        return parseInt(props.data.positive_votes)+parseInt(props.data.negative_votes)    
-    }
-
-    const vote = (vote)=>{
-        if(!locked){
-            setProcessing(true)
-            votePoll(props.data.poll_id, vote, voteResponseHandler)
-        }        
-    }
-
-    const proPoll = ()=>{
-        if(!locked){
-            processPoll(props.data.poll_id)
-        }        
-    }
-
-    const voteResponseHandler = (res)=>{
-        setProcessing(false)
-        if(res.transactionHash){            
-            setResponseHash(res.transactionHash)
-        }else{
-            setResErrorMsg("Failed to process")
-        }
-    }
         return (
             <div className="agentInfoContainer">            
                 <div className="avatar">
@@ -97,4 +60,4 @@ function PollInfo(props){
         );
 }
 
-export default PollInfo;
+export default ListedPropInfo;

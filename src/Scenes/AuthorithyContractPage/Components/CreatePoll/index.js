@@ -10,6 +10,7 @@ import {createBasicContract} from "Services_chain/Contracts";
 
 function CreateNewPoll (){
     const processingCreatePoll = useSelector((state)=> state.authorityContract.processingCreatePoll)
+    const createPollTransactionHash = useSelector((state)=> state.authorityContract.msg)
     const createPollError = useSelector((state)=> state.authorityContract.createPollError)
     const walletObj = useSelector((state)=> state.wallet.walletObj)
     const locked = useSelector((state)=> state.wallet.walletLocked)
@@ -23,17 +24,12 @@ function CreateNewPoll (){
 
     const createPoll = (e)=>{
         e.preventDefault()
-        dispatch(createNewPoll(pollType,amount))
-    }
-    const basicContract = (e)=>{
-        e.preventDefault()
-        dispatch(createBasicContract())
+        if(!locked){
+            dispatch(createNewPoll(pollType,amount))
+        }
+                
     }
 
-    const updateContractor = (e)=>{
-        e.preventDefault()
-        dispatch(updateRelContractAddress())
-    }
     return (
         <div>
             <div className="depositForm panel panel-default">
@@ -51,22 +47,17 @@ function CreateNewPoll (){
                 <form>
                     <Alert class="danger" show={locked} message="Wallet must be unlocked, before any operation!!" clearButton={true}/>
                     <Alert class="danger" show={(createPollError)?true: false} message="Failed to create new poll" clearButton={true}/>
+                    <Alert class="success" show={(createPollTransactionHash != "" && createPollTransactionHash)?true: false} message={createPollTransactionHash} clearButton={true}/>
                     <div className="input-group form-group">
                         <span className="input-group-addon">Amount</span>
                         <input type="number" onChange={(e)=>setAmount(e.target.value)} className="form-control" placeholder="Amount" />
                     </div>
                     <div className="input-group form-group">
                         <span className="input-group-addon">Poll Type</span>
-                        <SelectComponent on listItem={pollTypes} setValue={setPollType}/>
+                        <SelectComponent listItem={pollTypes} setValue={setPollType}/>
                     </div>
                     <div className="button-group form-group">
                         <button className="btn btn-green" onClick={createPoll} disabled={locked} >Create Poll</button>
-                    </div>
-                    <div className="button-group form-group">
-                        <button className="btn btn-green" onClick={basicContract} disabled={locked} >Create Basic Contractor</button>
-                    </div>
-                    <div className="button-group form-group">
-                        <button className="btn btn-green" onClick={updateContractor} disabled={locked} >Update Contractor</button>
                     </div>
                 </form>
             </div>

@@ -5,9 +5,11 @@ import Fab from "@material-ui/core/Fab";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileImage} from "@fortawesome/free-solid-svg-icons";
 import SelectComponent from "Components/SelectComponent";
-import MapLocation from "./Components/MapLocation";
+import InputMap from "Components/InputMap"
 import {createBasicContract} from "Services_chain/Contracts";
-import Alert from "../../Components/Common/Alert";
+import Alert from "Components/Common/Alert";
+import {addNewListedProp} from "Services/ListProperty"
+
 
 const nodes = [
     'ABDUL NODE',
@@ -15,7 +17,10 @@ const nodes = [
     'NADEEM NODE'
 ];
 
+
+
 function CreateTokenizedAsset(){
+    const fileArray = [];
     const [contractType, setContractType] = useState("basic")
     const [title, setTitle] = useState("")
     const [totalSupply, setTotalSupply] = useState(0)
@@ -32,29 +37,30 @@ function CreateTokenizedAsset(){
 
     const handleContractCreation = async ()=>{
         let data ={
-            title: "ISLAMABAD CENTER",
-            description: "Biggest Mall in Islamabad",
+            title: title,
+            description: description,
             location:{
-                city: "Islamabad",
-                country: "Pakistan"
+                city: city,
+                country: country
             },
             geolocation:{
-                lat: 89.00,
-                long: 74.09
+                lat: 33.705142,
+                long: 72.978906
             },
-            contractType:"Basic",
-            endDate: new Date(endDate).toISOString(),
+            contractType:contractType,
+            endDate: new Date().toISOString(),
             startDate: new Date().toISOString(),
             contractAddress:"",
             officialDocs : "",
             nodeName: "Abdul Waheed",
-            galleryImages : [],
+            galleryImages : images,
             nodeId : "",
-            tokenPrice: "20",
-            totalSupply: "1000"
+            tokenPrice: tokenPrice,
+            totalSupply: totalSupply
         }
-        console.log()
-        //await createBasicContract(data, setRequestStatus)
+
+        //
+        addNewListedProp(data)
     }
 
     return(
@@ -63,7 +69,7 @@ function CreateTokenizedAsset(){
                 <div className="walletWrapper">
                     <>
                         <div className="dashboardTitle">
-                            <h2>CREATE TOKENIZING CONTRACT</h2>
+                            <h3>CREATE TOKENIZING CONTRACT</h3>
                         </div>
                         <div style={{marginLeft:'2%'}}>
                             <Alert
@@ -138,9 +144,7 @@ function CreateTokenizedAsset(){
                                                     </div>
                                                 </Grid>
                                             </Grid>
-                                            <Grid container spacing={1} direction={"row"}>
-                                                <MapLocation/>
-                                            </Grid>
+                                            
                                         </div>
 
                                     </div>
@@ -160,22 +164,28 @@ function CreateTokenizedAsset(){
                                                         multiple
                                                         style={{display:'none'}}
                                                         type="file"
-                                                        onChange={e => setImages(e.target.value)}
+                                                        onChange={e => setImages(e.target.files)}
                                                     />
                                                     <label htmlFor="contained-address-file">
                                                         <Fab component="span" className="buttonDoc">
                                                             <FontAwesomeIcon icon={faFileImage} size="lg"  color="#0EAAA6" />
                                                         </Fab>
                                                     </label>
-                                                </div>
+                                                </div>                        
+                                            </Grid>
+                                            <Grid item xs={8} sm={10} md={10}>
+                                                <InputMap/>
+                                            </Grid>  
+                                            <Grid item xs={8} sm={10} md={10}>
                                                 <div className="submit">
                                                     <Button
                                                         className="submit_btn"
                                                         style={{fontSize:14}}
                                                         onClick={handleContractCreation}
                                                     >Create Contract</Button>
-                                                </div>
-                                            </Grid>
+                                                </div>   
+                                            </Grid> 
+                                                                   
                                         </Grid>
                                     </div>
                                 </Grid>

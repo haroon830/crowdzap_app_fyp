@@ -6,7 +6,8 @@ import './style.css'
 import { Icon } from 'react-fa';
 import Loader from 'react-loader-spinner'
 import {connect} from "react-redux";
-import {getListedProps} from "Services/ListProperty";
+import {getListedProps, getQueryListedProps} from "Services/ListProperty";
+import SearchBar from "Components/DashboardLayout/Components/Header/Components/SearchForm"
 import PlaceHolder from "Components/Common/PlaceHolder";
 
 
@@ -14,7 +15,9 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      resultTab: 'list'
+      resultTab: 'list',
+      searching: false,
+      searchData: null
     };
   }
 
@@ -39,7 +42,7 @@ class SearchForm extends React.Component {
           {this.props.listedProps.map((data, index) => {
             return (
               <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6" key={index}>
-                <SingleHouse data={data} />
+                <SingleHouse data={data} admin={false}/>
               </div>
             );
           })}
@@ -54,24 +57,70 @@ class SearchForm extends React.Component {
       </div>
     );
   }
+
+  searchResultList = () => {
+    return (
+      <div className="resultsList">
+        <div className="row">
+          {this.state.searchData.map((data, index) => {
+            return (
+              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6" key={index}>
+                <SingleHouse data={data} admin={false}/>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  searchData = (queryValue)=>{
+    if(queryValue !== ""){
+      this.setState({
+        searching:true,
+        searchData:null
+      })
+      this.props.getQueryListedProps(queryValue, this.searchDataCB)
+    }else{
+      this.setState({
+        searching : false
+      })
+    }
+  }
+
+  searchDataCB = (data)=>{
+    if(data.length>0){
+        this.setState({
+          searchData: data
+      })
+    }    
+  }
+
   render() {
     let resultBody=null
-    if(this.props.listedProps){
-      resultBody = this.state.resultTab === 'list' ? this.resultList() : this.resultMap()
+    if(this.state.searching){
+      //if user is searching and founded some data
+      if(this.state.searchData){
+        resultBody = this.searchResultList()
+      }
+    }else{
+      if(this.props.listedProps){
+        resultBody = this.state.resultTab === 'list' ? this.resultList() : this.resultMap()
+      }
+        //if listedProps null and also not in loading state
+      if(!this.props.listedProps && !this.props.loading){
+        resultBody = <PlaceHolder type="listedProperties"/>
+      }
     }
-    //if listedProps null and also not in loading state
-    if(!this.props.listedProps && !this.props.loading){
-      resultBody = <PlaceHolder type="listedProperties"/>
-    }
+    
+    
     return (
       <div className="searchForm">
         <div className="filterBox">
           <div className="row form-group">
             <div className="col-xs-12 col-sm-8 col-md-6 yearOfBirth">
-              <h4>Prototype Type</h4>
-              <div className="selectItem">
-                <SelectComponent listItem={['All', 'Rent', 'Sale']} />
-              </div>
+              <h4>Ongoing Projects</h4>
+              <SearchBar search={this.searchData}/>
             </div>
           </div>
         </div>
@@ -112,5 +161,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
     mapStateToProps,
-    { getListedProps}
+    { getListedProps, getQueryListedProps}
 )(SearchForm);

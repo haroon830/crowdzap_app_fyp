@@ -2,31 +2,34 @@ import * as React from 'react';
 import './style.css';
 import Dashboard from 'Components/DashboardLayout';
 import SingleHouse from 'Components/SingleHouse';
+import { useSelector, useDispatch } from 'react-redux';
+import {getListedProps} from "Services/ListProperty";
 
-const houseData = {
-  name: 'Modern Residence in New York',
-  address: ' 39 Remsen St, Brooklyn, NY 11201, USA',
-  beds: 3,
-  toilets: 2,
-  square: 20,
-  img: 'http://mariusn.com/themes/reales/images/prop/1-1.png'
-};
 
-class MyHousePage extends React.Component {
-  render() {
+function MyHousePage(props) {
+  const dispatch = useDispatch()
+  const listedProps = useSelector(state => state.listedProps.listedProperties)
+
+  React.useEffect(()=>{
+    dispatch(getListedProps())
+  }, []
+  )
     return (
         <Dashboard>
           <div className="dashboardTitle">
-            <h3>Property ({this.props.match.params.id})</h3>
+            <h3>Listed Property</h3>
           </div>
           <div className="main">
-            <div className="col-lg-6 col-md-6" >
-              <SingleHouse data={houseData} />
-            </div>
+            {listedProps && listedProps.map((data, index) => {
+              return (
+                  <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4" key={index}>
+                    <SingleHouse data={data} adminPage={true}/>
+                  </div>
+              );
+            })}
           </div>
         </Dashboard>
     );
-  }
 }
 
 export default MyHousePage;

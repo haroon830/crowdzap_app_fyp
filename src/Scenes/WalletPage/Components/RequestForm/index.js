@@ -13,6 +13,7 @@ function RequestForm(){
   const history = useHistory()
   const processing = useSelector((state)=> state.cryptoOrders.processingOrder)
   const processingError = useSelector((state)=> state.cryptoOrders.processingError)
+  const addedOrderStatus = useSelector((state)=> state.cryptoOrders.addedOrderStatus)
   const walletObj = useSelector((state)=> state.wallet.walletObj)
   const locked = useSelector((state)=> state.wallet.walletLocked)
   const [amount, setAmount] = useState(0)
@@ -46,6 +47,8 @@ function RequestForm(){
       dispatch(addCryptoOrderError("Invalid data"))
     }
   }
+
+
     return (
       <div>
         <div className="dashboardTitle">
@@ -66,6 +69,7 @@ function RequestForm(){
           <form>
             <Alert class="danger" show={locked} message="Wallet must be unlocked, before any operation!!" clearButton={true}/>
             <Alert class="danger" show={(processingError)?true: false} message="Failed to place order" clearButton={true}/>
+            <Alert class="success" show={(addedOrderStatus)?true: false} message="Successfully placed order, now redirecting to stripe" clearButton={true}/>
             <div className="input-group form-group">
               <span className="input-group-addon">Amount</span>
               <input type="number" onChange={(e)=>setAmount(e.target.value)} className="form-control" placeholder="Amount" />

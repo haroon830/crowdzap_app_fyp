@@ -8,7 +8,7 @@ class SearchMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      center: {lat: 10.766748, lng: 106.705785},
+      center:  {lat: 32.571144, lng: 74.075005},
       zoom: 15
     };
   }
@@ -29,7 +29,7 @@ class SearchMap extends React.Component {
             key: 'AIzaSyBuinFicS4HAGfIKW6rRutGFP9GWcReUn4'
           }}
         >
-          <MiniHouse lat={10.766748} lng={106.705785} />
+          <MiniHouse lat={32.571144} lng={74.075005} />
         </GoogleMapReact>
       </div>
     );

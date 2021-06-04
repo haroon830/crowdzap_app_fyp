@@ -2,11 +2,13 @@ import React from "react";
 import KYC from "./Components/Kyc";
 import Dashboard from "../../Components/DashboardLayout";
 import UserProfile from "./Components/User";
+import UserContacts from "./Components/Contacts"
 
 function Profiling(props) {
     const WalletPageSection = {
         kyc: (<KYC/>),
         userprofile: (<UserProfile/>),
+        usercontacts:(<UserContacts/>),
         notfound: (null)
     };
     const matchSection = () => {
@@ -19,6 +21,8 @@ function Profiling(props) {
                 return WalletPageSection.userprofile;
             case 'kyc':
                 return WalletPageSection.kyc;
+            case 'contacts':
+                return WalletPageSection.usercontacts;
             default:
                 return WalletPageSection.notfound;
         }
